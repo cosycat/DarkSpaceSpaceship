@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
     private void Start() {
         Debug.Log(RoomManager.Instance == null);
         Debug.Log(RoomManager.Instance);
-        RoomManager.Instance.ChangeToRoom("Room1", new Vector2Int(2, 1), this);
+        RoomManager.Instance.ChangeToRoom("StasisRoom", new Vector2Int(2, 1), this);
     }
 
     private void FixedUpdate() {
