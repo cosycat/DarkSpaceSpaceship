@@ -26,7 +26,7 @@ public class Room {
         this.width = width;
         var layoutCharArray = layoutString.ToCharArray();
         int pos = 0;
-        for (int y = height - 1; y >= 0; y--) {
+        for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Tile tile;
                 var c = layoutCharArray[pos++];
@@ -54,9 +54,17 @@ public class Room {
                         continue;
                 }
 
-                // Debug.Log($"Created {tile.Type}-Tile at ({x}/{y}) for Room {name}");
+                if (c is 'D' or 'G') {
+                    Debug.Log($"Created {tile.Type}-Tile at ({x}/{y}) for Room {name}");
+                }
                 RoomMap[y, x] = tile;
             }
+        }
+    }
+
+    public void RemoveAllItemGameObjects() {
+        foreach (var tile in RoomMap) {
+            tile.ItemOnTile?.DeleteGO();
         }
     }
 }

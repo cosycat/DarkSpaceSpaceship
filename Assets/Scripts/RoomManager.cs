@@ -69,12 +69,35 @@ public class RoomManager : MonoBehaviour {
     }
 
     private void DestroyCurrentRoomTiles() {
-        while (transform.childCount > 0) {
-            var tileGO = transform.GetChild(0).GetComponent<TileGO>();
-            if (tileGO == null) continue;
-            tileGO.ConnectedTile.ItemOnTile?.DeleteGO();
-            Destroy(tileGO);
+        if (CurrentRoom == null) {
+            return;
         }
+        Debug.Log("Destroying All Tiles");
+        Debug.Log(transform.childCount);
+        int i = 0;
+
+        //Array to hold all child obj
+        GameObject[] allChildren = new GameObject[transform.childCount];
+
+        //Find all child obj and store to that array
+        foreach (Transform child in transform)
+        {
+            allChildren[i] = child.gameObject;
+            i += 1;
+        }
+
+        //Now destroy them
+        foreach (GameObject child in allChildren)
+        {
+            // var tileGO = child.GetComponent<TileGO>();
+            // if (tileGO == null) continue;
+            // tileGO.ConnectedTile.ItemOnTile?.DeleteGO();
+            DestroyImmediate(child.gameObject);
+        }
+
+        Debug.Log(transform.childCount);
+        
+        CurrentRoom.RemoveAllItemGameObjects();
     }
 
 

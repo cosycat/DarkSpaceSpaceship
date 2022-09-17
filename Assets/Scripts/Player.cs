@@ -35,8 +35,10 @@ public class Player : MonoBehaviour {
 
     private void HandleMovement() {
         if (!_isMoving) return;
+        // Debug.Log("Player::Handle Movement");
         var currMovementTime = (Time.timeSinceLevelLoad - _moveStartTime) / movementTime;
         if (currMovementTime > 1) {
+            Debug.Log("Reach goal tile");
             // We reached our goal
             transform.position = _goalPosition;
             currGridPosition = new Vector2Int((int)_goalPosition.x, (int)_goalPosition.y);
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour {
                 
             var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt((int)_goalPosition.x, (int)_goalPosition.y);
             if (goalTile.Type == TileType.DOOR) {
+                Debug.Log("Moved to a door!");
                 DoorTile doorTile = (DoorTile)goalTile;
                 RoomManager.Instance.ChangeToRoom(doorTile.LinkedRoom, doorTile.LinkedPosition, this);
             }

@@ -27,7 +27,8 @@ public class Item {
     }
 
     public void DeleteGO() {
-        GameObject.Destroy(ItemGO);
+        if (ItemGO == null) return;
+        GameObject.DestroyImmediate(ItemGO);
     }
 
     public static Item CreateGoalItem(int x, int y, Room room) {

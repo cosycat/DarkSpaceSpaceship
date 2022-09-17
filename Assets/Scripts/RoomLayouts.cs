@@ -16,7 +16,7 @@ public static class RoomLayouts {
                 "WFFFFW" +
                 "WWWWWW"),
         });
-        // ConnectDoors(rooms[0], 3, 3, rooms[1], 0, 3);
+        ConnectDoors(rooms[0], 2, 3, rooms[1], 3, 0);
         return rooms;
     }
 
