@@ -14,9 +14,35 @@ public static class RoomLayouts {
                 "WFTOFW" +
                 "WFGFFW" +
                 "WFFFFW" +
-                "WWWWWW"),
+                "WWDWWW"),
+            new Room("Room3", 10, 6,
+                "WWDWWWWWWW" +
+                "WFFFFFFFFW" +
+                "WFFFFFFFFW" +
+                "WFFFFFFFFW" +
+                "WFFFFFFFFD" +
+                "WWWWWWWWWW" 
+                ),
+            new Room("Room4", 9, 13,
+                "WWWWWWWWW" +
+                "WFFFFFFFW" +
+                "WFFFFFFFW" +
+                "WFFFFFFFW" +
+                "DFFFFFFFW" +
+                "WWWWWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWFFFW" + 
+                "EEEEWWWWW" 
+                )
         });
         ConnectDoors(rooms[0], 2, 3, rooms[1], 3, 0);
+        ConnectDoors(rooms[1], 2, 5,rooms[2],2, 0);
+        ConnectDoors(rooms[2], 9, 4,rooms[3],0, 4);
         return rooms;
     }
 
