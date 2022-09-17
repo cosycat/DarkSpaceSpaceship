@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724788373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 3, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -239,6 +239,7 @@ MonoBehaviour:
   floorTilePrefab: {fileID: 2164487782112378005, guid: e320b06ce57d34eb78c0f8061112d740, type: 3}
   wallTilePrefab: {fileID: -840198806754004390, guid: 02e6e0763d8cc494ea6d9a6699f5d37c, type: 3}
   doorTilePrefab: {fileID: -8340558430966359460, guid: 50ba2f8c80fcd488ca7079b90350a5be, type: 3}
+  emptyTilePrefab: {fileID: 6247722508683668632, guid: 87ec81912a1224cf98c981f31d3c1821, type: 3}
   goalPrefab: {fileID: 2947966284021662193, guid: 1a4980450ea954e8197c13a4c88f94a7, type: 3}
   trapPrefab: {fileID: 7087798366085415266, guid: 7b1e9e57644f24bf1abfea189ede9483, type: 3}
   obstaclePrefab: {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}

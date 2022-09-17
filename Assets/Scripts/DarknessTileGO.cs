@@ -26,7 +26,7 @@ public class DarknessTileGO : TileGO {
         }
 
         var newAlpha = Mathf.Lerp(_animationStartValue, _animationGoalValue, (Time.timeSinceLevelLoad - _animationStartTime) / _animationDuration);
-        Debug.Log($"new alpha: {newAlpha}");
+        // Debug.Log($"new alpha: {newAlpha}");
         if (newAlpha >= _animationGoalValue) { // reached our animation goal!
             _isAnimating = false;
             newAlpha = _animationGoalValue;

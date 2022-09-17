@@ -54,6 +54,9 @@ public class Room {
                     case 'O':
                         tile = new Tile(Item.CreateObstacleItem(x, y, this));
                         break;
+                    case 'E':
+                        tile = new Tile(TileType.EMPTY);
+                        break;
                     default:
                         Debug.Log($"Skipped {c} in room {name}");
                         continue;

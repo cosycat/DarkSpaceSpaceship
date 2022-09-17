@@ -129,8 +129,10 @@ public class Player : MonoBehaviour {
         return true;
     }
 
-    public void SetPosition(Vector2Int pos) {
-        RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y).Darken(0);
+    public void SetPosition(Vector2Int pos, bool darkenPreviousTile = false) {
+        if (darkenPreviousTile) {
+            RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y).Darken(0);
+        }
         currGridPosition = pos;
         transform.position = new Vector3(pos.x, pos.y);
         RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y).Brighten(0);
