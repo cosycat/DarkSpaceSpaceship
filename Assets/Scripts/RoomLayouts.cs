@@ -23,7 +23,7 @@ public static class RoomLayouts {
                 "WFFFFFFFFD" +
                 "WWWWWWWWWW" 
                 ),
-            new Room("Room4", 9, 13,
+            new Room("Room4", 9, 14,
                 "WWWWWWWWW" +
                 "WFFFFFFFW" +
                 "WFFFFFFFW" +

@@ -57,7 +57,7 @@ public class RoomManager : MonoBehaviour {
     }
 
     private void InstantiateTileGOs(Room room) {
-        DarknessSprites = new DarknessTileGO[room.height, room.height];
+        DarknessSprites = new DarknessTileGO[room.height, room.width];
         for (int y = 0; y < room.height; y++) {
             for (int x = 0; x < room.width; x++) {
                 var tile = room.GetTileAt(x, y);
@@ -67,7 +67,7 @@ public class RoomManager : MonoBehaviour {
                     TileType.DOOR => doorTilePrefab,
                     _ => floorTilePrefab
                 };
-                Debug.Log($"Instantiating {tile.Type} at ({x},{y})");
+                // Debug.Log($"Instantiating {tile.Type} at ({x},{y})");
                 var tileObject = Instantiate(prefab.gameObject, this.transform, true);
                 tileObject.GetComponent<TileGO>().ConnectedTile = tile;
                 tileObject.transform.position = new Vector3(x, y);
