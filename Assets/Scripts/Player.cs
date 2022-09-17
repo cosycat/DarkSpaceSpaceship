@@ -42,7 +42,6 @@ public class Player : MonoBehaviour {
 
     private void Start() {
         Debug.Log("Player Start");
-        // RoomManager.Instance.ChangeToRoom("Room1", new Vector2Int(2, 1), this);
     }
 
     private void FixedUpdate() {

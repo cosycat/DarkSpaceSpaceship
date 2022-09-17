@@ -3,46 +3,69 @@ using System.Collections.Generic;
 public static class RoomLayouts {
     public static List<Room> GetTestRooms() {
         var rooms = new List<Room>(new Room[] {
-            new Room("Room1", 4, 4,
-                "WWWW" +
-                "WFFW" +
-                "WFRW" +
-                "WWDW"),
-            new Room("Room2", 6, 6,
-                "WWWDWW" +
-                "WFFFFW" +
-                "WFTOFW" +
-                "WFGFFW" +
-                "WFFFFW" +
-                "WWDWWW"),
-            new Room("Room3", 10, 6,
-                "WWDWWWWWWW" +
-                "WFFFFFFFFW" +
-                "WFFFFFFFFW" +
-                "WFFFFFFFFW" +
-                "WFFFFFFFFD" +
-                "WWWWWWWWWW" 
+            new Room("StasisRoom", 14, 9,
+                "WWWWWWWWWWWWWW" +
+                "WFFFWFFFFFWFFW" +
+                "WFFFWFFFFFWFFD" + // x = 13, y = 2
+                "WFFFWFFWFFWFFW" +
+                "WFFFWFFWFFWWFW" +
+                "WFFFFFFWFFFFFW" +
+                "WFFFFFFWFFFFFW" +
+                "WFFFFFFWFFFFFW" +
+                "WWWWWWWWWWWWWW"),
+            new Room("CorridorRoom", 11, 30, 
+                "WWWWWWWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFDEEEE" + // x = 6, y = 2 
+                "DFFFFFWEEEE" + // x = 0, y = 3 
+                "WFFFFFWEEEE" +
+                "WFFFFFWWWWW" +
+                "WFFFFFFFFFW" +
+                "WFFFFFFFFFW" +
+                "WFFFFFWWWWW" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "DFFFFFDEEEE" + // x1 = 0, y = 11, x2 = 6
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "DFFFFFWEEEE" + // x = 0, y = 18 
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFDEEEE" + // x = 6 , y = 22 
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFWEEEE" +
+                "WFFFFFDEEEE" + // x = 7 , y = 26
+                "DFFFFFDEEEE" + // x1 = 0, y = 27, x2 = 6  
+                "WFFFFFWEEEE" +
+                "WWWDWWWEEEE"   // x = 3 , y = 29
                 ),
-            new Room("Room4", 9, 14,
-                "WWWWWWWWW" +
-                "WFFFFFFFW" +
-                "WFFFFFFFW" +
-                "WFFFFFFFW" +
-                "DFFFFFFFW" +
-                "WWWWWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWFFFW" + 
-                "EEEEWWWWW" 
-                )
+            new Room("Engine Room", 14, 12,
+                "WWWWWWWWWWWWWW" +
+                "WFFFFFFFFFFFFW" +
+                "WFFFFFFFFFFFFD" + // x = 13, y = 2 
+                "WFFFFFWWWFFFFW" +
+                "WFFFFFWFFFFFFW" +
+                "WFFFFFWFFFFFFW" +
+                "WFFFFFWFFFFFFW" +
+                "WFFFFFWFFFFFFW" +
+                "WFFFWWWFFFFFFW" +
+                "WFFFWFFFFFFFFD" + // x = 13, y = 9
+                "WFFFWFFFFFFFFW" +
+                "WWWWWWWWWWWWWW"
+            ),
+            // new Room("Kitchen", )
         });
-        ConnectDoors(rooms[0], 2, 3, rooms[1], 3, 0);
-        ConnectDoors(rooms[1], 2, 5,rooms[2],2, 0);
-        ConnectDoors(rooms[2], 9, 4,rooms[3],0, 4);
+        
+        ConnectDoors(rooms[0],13, 2, rooms[1], 0, 3 );
+        ConnectDoors(rooms[1], 0, 11, rooms[2], 13, 2 );
+        ConnectDoors(rooms[1], 0, 18, rooms[2], 13,  9);
+        
         return rooms;
     }
 
