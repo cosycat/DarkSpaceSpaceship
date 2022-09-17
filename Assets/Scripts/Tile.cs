@@ -6,28 +6,37 @@ public class Tile {
     
     public TileType Type { get; private set; }
 
-    [CanBeNull] private Item _item = null;
+    [CanBeNull] public Item ItemOnTile { get; private set; } = null;
 
     public Tile(TileType type = TileType.FLOOR) {
         Type = type;
     }
 
     public Tile(Item item) {
-        _item = item;
+        ItemOnTile = item;
     }
 }
 
 class DoorTile : Tile {
-    public Vector2Int LinkedPosition { get; }
-    public string LinkedRoom { get; }
+    public Vector2Int LinkedPosition { get; private set; }
+    public string LinkedRoom { get; private set; }
 
     // public DoorTile(Vector2Int linkedPosition, string linkedRoom) : base(TileType.DOOR) {
     //     this.LinkedPosition = linkedPosition;
     //     this.LinkedRoom = linkedRoom;
     // }
 
+    public DoorTile() : base(TileType.DOOR) {
+        
+    }
+    
     public DoorTile(int x, int y, string linkedRoom) : base(TileType.DOOR) {
         this.LinkedPosition = new Vector2Int(x, y);
         this.LinkedRoom = linkedRoom;
+    }
+
+    public void ConfigureDoor(int x, int y, string linkedRoom) {
+        LinkedPosition = new Vector2Int(x, y);
+        LinkedRoom = linkedRoom;
     }
 }

@@ -236,9 +236,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b302eb85dc224140b4e80b612d0f096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeTilePrefab: {fileID: 7840453585168282049, guid: e320b06ce57d34eb78c0f8061112d740, type: 3}
+  floorTilePrefab: {fileID: 7840453585168282049, guid: e320b06ce57d34eb78c0f8061112d740, type: 3}
   wallTilePrefab: {fileID: 3849814390422439456, guid: 02e6e0763d8cc494ea6d9a6699f5d37c, type: 3}
   doorTilePrefab: {fileID: 8964457978774564708, guid: 50ba2f8c80fcd488ca7079b90350a5be, type: 3}
+  goalPrefab: {fileID: 2947966284021662193, guid: 1a4980450ea954e8197c13a4c88f94a7, type: 3}
+  trapPrefab: {fileID: 7087798366085415266, guid: 7b1e9e57644f24bf1abfea189ede9483, type: 3}
+  obstaclePrefab: {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}
 --- !u!4 &1096537786
 Transform:
   m_ObjectHideFlags: 0
@@ -263,7 +266,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8180721911482464161, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8180721911482464163, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
       propertyPath: m_Name

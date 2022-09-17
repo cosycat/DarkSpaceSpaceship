@@ -17,7 +17,9 @@ public class Player : MonoBehaviour {
     private bool _isMoving = false;
     
     // Start is called before the first frame update
-    void Start() {
+    private void Start() {
+        Debug.Log(RoomManager.Instance == null);
+        Debug.Log(RoomManager.Instance);
         RoomManager.Instance.ChangeToRoom("Room1", new Vector2Int(2, 1), this);
     }
 
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
 
-    void Update() {
+    private void Update() {
         GetMovementInput();
     }
 
