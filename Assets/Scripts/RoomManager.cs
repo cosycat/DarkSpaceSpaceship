@@ -132,4 +132,8 @@ public class RoomManager : MonoBehaviour {
             return null;
         }
     }
+
+    public DarknessTileGO[,] GetAllDarknessTiles() {
+        return DarknessSprites;
+    }
 }
