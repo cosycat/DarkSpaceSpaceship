@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8180721911482464166}
   - component: {fileID: 8180721911482464161}
   - component: {fileID: 8180721911482464160}
+  - component: {fileID: 4889735347150963588}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98,4 +99,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementTime: 0.3
+  movementPauseTime: 0.2
   currGridPosition: {x: 0, y: 0}
+--- !u!114 &4889735347150963588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180721911482464163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f0e52dc5ca64596b98d502829ef031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashTimerDuration: 1
+  flashStayTime: 1
+  flashFadeTime: 1

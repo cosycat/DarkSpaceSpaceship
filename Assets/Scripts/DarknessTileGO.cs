@@ -40,16 +40,28 @@ public class DarknessTileGO : TileGO {
     public void Brighten(float timeUntilBright, float delay = 0) {
         ChangeAlphaTo(0, timeUntilBright, delay);
     }
+
     public void Darken(float timeUntilBright, float delay = 0) {
         ChangeAlphaTo(1, timeUntilBright, delay);
     }
 
     private void ChangeAlphaTo(float goalAlpha, float timeUntilBright, float delay = 0) {
+        if (timeUntilBright <= 0 && delay <= 0) {
+            SetAlphaImmediately(goalAlpha);
+            return;
+        }
         _animationDelay = delay;
-        _animationStartTime = Time.timeSinceLevelLoad;
+        _animationStartTime = Time.timeSinceLevelLoad + delay;
         _animationDuration = timeUntilBright;
         _animationStartValue = _spriteRenderer.color.a;
         _animationGoalValue = goalAlpha;
         _isAnimating = true;
+    }
+
+    private void SetAlphaImmediately(float alpha) {
+        _isAnimating = false;
+        var color = _spriteRenderer.color;
+        color = new Color(color.r, color.g, color.b, alpha);
+        _spriteRenderer.color = color;
     }
 }

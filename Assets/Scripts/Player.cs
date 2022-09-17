@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
     private Vector2Int _goalPosition = Vector2Int.zero;
     private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
-    private bool _isMoving = false;
+    public bool IsMoving { get; private set; } = false;
     private float _currentMovementPauseTime = 0; // Time the movement is paused after e.g. after running into a wall.
 
     // Start is called before the first frame update
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
     }
 
     private void HandleMovement() {
-        if (!_isMoving) return;
+        if (!IsMoving) return;
         // Debug.Log("Player::Handle Movement");
         var currMovementTime = (Time.timeSinceLevelLoad - _moveStartTime) / movementTime;
         if (currMovementTime > 1) {
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour {
             // We reached our next tile
             transform.position = new Vector3(_goalPosition.x, _goalPosition.y);
             currGridPosition = _goalPosition;
-            _isMoving = false;
+            IsMoving = false;
 
             var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt(_goalPosition.x, _goalPosition.y);
             if (goalTile == null) throw new Exception($"We moved onto a non existing tile at ({_goalPosition.x},{_goalPosition.y}) in room {RoomManager.Instance.CurrentRoom.Name}");
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour {
     }
 
     private void GetMovementInput() {
-        if (_isMoving || _currentMovementPauseTime > 0) {
+        if (IsMoving || _currentMovementPauseTime > 0) {
             return;
         }
 
@@ -95,7 +95,7 @@ public class Player : MonoBehaviour {
                 _currentMovementPauseTime = movementPauseTime;
                 return;
             }
-            _isMoving = true;
+            IsMoving = true;
             var goalDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(_goalPosition.x, _goalPosition.y);
             goalDarknessTGO.Brighten(movementTime);
             var currentDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y);
