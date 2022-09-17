@@ -15,6 +15,10 @@ public class Tile {
     public Tile(Item item) {
         ItemOnTile = item;
     }
+
+    public void ConsumeItem() {
+        ItemOnTile?.OnConsume();
+    }
 }
 
 class DoorTile : Tile {

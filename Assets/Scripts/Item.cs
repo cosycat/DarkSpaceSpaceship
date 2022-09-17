@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Item {
@@ -31,17 +32,34 @@ public class Item {
         GameObject.DestroyImmediate(ItemGO);
     }
 
+    public void OnConsume() {
+        switch (Type) {
+            case ItemType.GOAL:
+                // TODO What happens if we reach a goal?
+                Debug.Log("Reached Goal!");
+                break;
+            case ItemType.TRAP:
+                break;
+            case ItemType.OBSTACLE:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        DeleteGO();
+    }
+
     public static Item CreateGoalItem(int x, int y, Room room) {
         
         return new Item(RoomManager.Instance.GoalPrefab, ItemType.GOAL, x, y, room);
     }
+
     public static Item CreateTrapItem(int x, int y, Room room) {
         return new Item(RoomManager.Instance.TrapPrefab, ItemType.TRAP, x, y, room);
     }
+
     public static Item CreateObstacleItem(int x, int y, Room room) {
         return new Item(RoomManager.Instance.ObstaclePrefab, ItemType.OBSTACLE, x, y, room);
     }
-    
 }
 
 public enum ItemType {
