@@ -1,8 +1,8 @@
 using UnityEngine;
 
 class DoorTile : Tile {
-    public Vector2Int LinkedPosition { get; private set; }
-    public string LinkedRoom { get; private set; }
+    public Vector2Int? LinkedPosition { get; private set; } = null;
+    public string LinkedRoom { get; private set; } = null;
 
     // public DoorTile(Vector2Int linkedPosition, string linkedRoom) : base(TileType.DOOR) {
     //     this.LinkedPosition = linkedPosition;

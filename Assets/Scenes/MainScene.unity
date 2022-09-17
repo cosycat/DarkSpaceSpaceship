@@ -247,8 +247,8 @@ MonoBehaviour:
   rechargePrefab: {fileID: 7087798366085415266, guid: 4fc8a0dd9a91448f4b14632304eca5c6, type: 3}
   darknessTilePrefab: {fileID: -2387907237166971549, guid: aa7df29e3597c416e9333a14e199e759, type: 3}
   playerPrefab: {fileID: 8180721911482464160, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
-  spawnPoint: {x: 1, y: 1}
-  spawnRoom: Room3
+  spawnPoint: {x: 2, y: 1}
+  spawnRoom: StasisRoom
 --- !u!4 &1096537786
 Transform:
   m_ObjectHideFlags: 0

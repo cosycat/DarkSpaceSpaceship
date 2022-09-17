@@ -70,7 +70,9 @@ public class Player : MonoBehaviour {
             if (goalTile is { Type: TileType.DOOR }) {
                 Debug.Log("Moved to a door!");
                 DoorTile doorTile = (DoorTile)goalTile;
-                RoomManager.Instance.ChangeToRoom(doorTile.LinkedRoom, doorTile.LinkedPosition, this);
+                if (doorTile.LinkedRoom != null && doorTile.LinkedPosition != null) {
+                    RoomManager.Instance.ChangeToRoom(doorTile.LinkedRoom, (Vector2Int)doorTile.LinkedPosition, this);
+                }
             }
             else if (goalTile.ItemOnTile is { Type: ItemType.GOAL }) {
                 // Debug.Log("Moved to goal!");
@@ -142,7 +144,7 @@ public class Player : MonoBehaviour {
     /// <param name="goalTile">The tile to move to</param>
     /// <returns>True if movement is possible</returns>
     private bool CheckMovement(Tile goalTile) {
-        if (goalTile == null || goalTile.Type == TileType.WALL) {
+        if (goalTile == null || goalTile.Type is TileType.WALL or TileType.EMPTY) {
             // It can be null, if we are on a door and try to immediately turn back.
             // Debug.Log("wall");
             return false;
