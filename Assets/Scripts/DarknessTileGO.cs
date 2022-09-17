@@ -13,7 +13,7 @@ public class DarknessTileGO : TileGO {
     private float _animationGoalValue;
     private float _animationDuration;
     private bool _isAnimating;
-
+    
     private void Awake() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -30,6 +30,8 @@ public class DarknessTileGO : TileGO {
         if (newAlpha >= _animationGoalValue) { // reached our animation goal!
             _isAnimating = false;
             newAlpha = _animationGoalValue;
+            // set player back to bright, in case they walked around after a flash
+            RoomManager.Instance.GetDarknessTileGOAt(Player.Instance.GoalPosition.x, Player.Instance.GoalPosition.y).Brighten(0);
         }
 
         var color = _spriteRenderer.color;
@@ -37,15 +39,18 @@ public class DarknessTileGO : TileGO {
         _spriteRenderer.color = color;
     }
 
-    public void Brighten(float timeUntilBright, float delay = 0) {
-        ChangeAlphaTo(0, timeUntilBright, delay);
+    public void Brighten(float timeUntilBright, float delay = 0, bool overrideCurrentTransition = false) {
+        ChangeAlphaTo(0, timeUntilBright, delay, overrideCurrentTransition);
     }
 
-    public void Darken(float timeUntilBright, float delay = 0) {
-        ChangeAlphaTo(1, timeUntilBright, delay);
+    public void Darken(float timeUntilBright, float delay = 0, bool overrideCurrentTransition = false) {
+        ChangeAlphaTo(1, timeUntilBright, delay, overrideCurrentTransition);
     }
 
-    private void ChangeAlphaTo(float goalAlpha, float timeUntilBright, float delay = 0) {
+    private void ChangeAlphaTo(float goalAlpha, float timeUntilBright, float delay = 0, bool overrideCurrentTransition = false) {
+        if (_isAnimating && !overrideCurrentTransition) {
+            return;
+        }
         if (timeUntilBright <= 0 && delay <= 0) {
             SetAlphaImmediately(goalAlpha);
             return;

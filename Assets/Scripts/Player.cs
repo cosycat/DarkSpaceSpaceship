@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    
+    public static Player Instance { get; private set; }
 
     private Room _currRoom;
     
@@ -16,9 +18,22 @@ public class Player : MonoBehaviour {
     private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
     public bool IsMoving { get; private set; } = false;
+
+    public Vector2Int GoalPosition {
+        get => _goalPosition;
+        private set => _goalPosition = value;
+    }
+
     private float _currentMovementPauseTime = 0; // Time the movement is paused after e.g. after running into a wall.
 
-    // Start is called before the first frame update
+    private void Awake() {
+        if (Instance != null) {
+            Debug.LogError("TWO PLAYERS");
+            DestroyImmediate(Instance);
+        }
+        Instance = this;
+    }
+
     private void Start() {
         Debug.Log(RoomManager.Instance == null);
         Debug.Log(RoomManager.Instance);
@@ -28,9 +43,7 @@ public class Player : MonoBehaviour {
     private void FixedUpdate() {
         HandleMovement();
     }
-
-    // Update is called once per frame
-
+    
     private void Update() {
         GetMovementInput();
         if (_currentMovementPauseTime > 0) _currentMovementPauseTime -= Time.deltaTime;
