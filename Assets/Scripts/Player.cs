@@ -11,8 +11,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private Vector2Int currGridPosition = Vector2Int.zero;
 
-    private Vector3 _goalPosition = Vector3.zero;
-    private Vector3 _startPosition = Vector3.zero;
+    private Vector2Int _goalPosition = Vector2Int.zero;
+    private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
     private bool _isMoving = false;
     
@@ -40,11 +40,11 @@ public class Player : MonoBehaviour {
         if (currMovementTime > 1) {
             Debug.Log("Reach goal tile");
             // We reached our goal
-            transform.position = _goalPosition;
-            currGridPosition = new Vector2Int((int)_goalPosition.x, (int)_goalPosition.y);
+            transform.position = new Vector3(_goalPosition.x, _goalPosition.y);
+            currGridPosition = _goalPosition;
             _isMoving = false;
                 
-            var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt((int)_goalPosition.x, (int)_goalPosition.y);
+            var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt(_goalPosition.x, _goalPosition.y);
             if (goalTile.Type == TileType.DOOR) {
                 Debug.Log("Moved to a door!");
                 DoorTile doorTile = (DoorTile)goalTile;
@@ -54,7 +54,9 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        transform.position = Vector3.Lerp(_startPosition, _goalPosition, currMovementTime);
+        Vector3 goalPos3D = new Vector3(_goalPosition.x, _goalPosition.y);
+        Vector3 startPos3D = new Vector3(_startPosition.x, _startPosition.y);
+        transform.position = Vector3.Lerp(startPos3D, goalPos3D, currMovementTime);
     }
 
     private void GetMovementInput() {
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        _startPosition = new Vector3(currGridPosition.x, currGridPosition.y, 0);
+        _startPosition = currGridPosition;
         _goalPosition = _startPosition;
         _moveStartTime = Time.timeSinceLevelLoad;
         if (Input.GetAxis("Horizontal") < 0) {
@@ -79,8 +81,8 @@ public class Player : MonoBehaviour {
         }
 
         if (_goalPosition != _startPosition) {
-            var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt((int)_goalPosition.x, (int)_goalPosition.y);
-            if (goalTile.Type == TileType.WALL) {
+            var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt(_goalPosition.x, _goalPosition.y);
+            if (goalTile == null || goalTile.Type == TileType.WALL) { // It can be null, if we are on a door and try to immediately turn back.
                 Debug.Log("RUN INTO WALL");
                 return;
             }

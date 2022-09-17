@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Room {
@@ -8,7 +9,11 @@ public class Room {
     public int height { get; private set; }
     public int width { get; private set; }
 
+    [CanBeNull]
     public Tile GetTileAt(int x, int y) {
+        if (x < 0 || x >= width || y < 0 || y >= height) {
+            return null;
+        }
         return RoomMap[y, x];
     }
 
