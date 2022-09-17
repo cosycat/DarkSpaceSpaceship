@@ -242,6 +242,7 @@ MonoBehaviour:
   goalPrefab: {fileID: 2947966284021662193, guid: 1a4980450ea954e8197c13a4c88f94a7, type: 3}
   trapPrefab: {fileID: 7087798366085415266, guid: 7b1e9e57644f24bf1abfea189ede9483, type: 3}
   obstaclePrefab: {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}
+  darknessTilePrefab: {fileID: -2387907237166971549, guid: aa7df29e3597c416e9333a14e199e759, type: 3}
 --- !u!4 &1096537786
 Transform:
   m_ObjectHideFlags: 0

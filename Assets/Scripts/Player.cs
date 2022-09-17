@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
             transform.position = new Vector3(_goalPosition.x, _goalPosition.y);
             currGridPosition = _goalPosition;
             _isMoving = false;
-                
+
             var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt(_goalPosition.x, _goalPosition.y);
             if (goalTile == null) throw new Exception($"We moved onto a non existing tile at ({_goalPosition.x},{_goalPosition.y}) in room {RoomManager.Instance.CurrentRoom.Name}");
             
@@ -95,9 +95,11 @@ public class Player : MonoBehaviour {
                 _currentMovementPauseTime = movementPauseTime;
                 return;
             }
-
-            // TODO check for traps
             _isMoving = true;
+            var goalDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(_goalPosition.x, _goalPosition.y);
+            goalDarknessTGO.Brighten(movementTime);
+            var currentDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y);
+            currentDarknessTGO.Darken(movementTime);
         }
     }
 
@@ -128,7 +130,9 @@ public class Player : MonoBehaviour {
     }
 
     public void SetPosition(Vector2Int pos) {
+        RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y).Darken(0);
         currGridPosition = pos;
         transform.position = new Vector3(pos.x, pos.y);
+        RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y).Brighten(0);
     }
 }
