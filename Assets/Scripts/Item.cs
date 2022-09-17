@@ -60,11 +60,16 @@ public class Item {
     public static Item CreateObstacleItem(int x, int y, Room room) {
         return new Item(RoomManager.Instance.ObstaclePrefab, ItemType.OBSTACLE, x, y, room);
     }
+
+    public static Item CreateDeathItem(int x, int y, Room room) {
+        return new Item(RoomManager.Instance.DeathPrefab, ItemType.DEATH, x, y, room);
+    }
 }
 
 public enum ItemType {
     GOAL,
     TRAP,
-    OBSTACLE
+    OBSTACLE,
+    DEATH
 }
 

@@ -62,9 +62,9 @@ public class Room {
                         continue;
                 }
 
-                if (c is 'D' or 'G') {
-                    Debug.Log($"Created {tile.Type}-Tile at ({x}/{y}) for Room {name}");
-                }
+                // if (c is 'D' or 'G') {
+                //     Debug.Log($"Created {tile.Type}-Tile at ({x}/{y}) for Room {name}");
+                // }
                 RoomMap[y, x] = tile;
             }
         }

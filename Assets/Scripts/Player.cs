@@ -13,11 +13,15 @@ public class Player : MonoBehaviour {
     [SerializeField] private float movementPauseTime = 0.5f;
 
     [SerializeField] private Vector2Int currGridPosition = Vector2Int.zero;
-
+    
+    
     private Vector2Int _goalPosition = Vector2Int.zero;
     private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
+    
     public bool IsMoving { get; private set; } = false;
+    public bool IsDead { get; private set; } = false;
+
 
     public Vector2Int GoalPosition {
         get => _goalPosition;
@@ -35,9 +39,8 @@ public class Player : MonoBehaviour {
     }
 
     private void Start() {
-        Debug.Log(RoomManager.Instance == null);
-        Debug.Log(RoomManager.Instance);
-        RoomManager.Instance.ChangeToRoom("Room1", new Vector2Int(2, 1), this);
+        Debug.Log("Player Start");
+        // RoomManager.Instance.ChangeToRoom("Room1", new Vector2Int(2, 1), this);
     }
 
     private void FixedUpdate() {
@@ -50,7 +53,7 @@ public class Player : MonoBehaviour {
     }
 
     private void HandleMovement() {
-        if (!IsMoving) return;
+        if (IsDead || !IsMoving) return;
         // Debug.Log("Player::Handle Movement");
         var currMovementTime = (Time.timeSinceLevelLoad - _moveStartTime) / movementTime;
         if (currMovementTime > 1) {
@@ -72,6 +75,10 @@ public class Player : MonoBehaviour {
                 // Debug.Log("Moved to goal!");
                 goalTile.ConsumeItem();
             }
+            else if (goalTile.ItemOnTile is {Type: ItemType.TRAP}) {
+                // DIIIEEEE
+                Die(goalTile);
+            }
                 
             return;
         }
@@ -81,8 +88,17 @@ public class Player : MonoBehaviour {
         transform.position = Vector3.Lerp(startPos3D, goalPos3D, currMovementTime);
     }
 
+    private void Die(Tile tileToDieOn) {
+        GetComponent<SpriteRenderer>().enabled = false;
+        tileToDieOn.ItemOnTile = Item.CreateDeathItem(_goalPosition.x, _goalPosition.y, RoomManager.Instance.CurrentRoom);
+        tileToDieOn.ItemOnTile!.CreateGO();
+        GetComponent<Flashlight>().Flash(3, 1.5f);
+        // TODO frizzling sound
+        IsDead = true;
+    }
+
     private void GetMovementInput() {
-        if (IsMoving || _currentMovementPauseTime > 0) {
+        if (IsDead || IsMoving || _currentMovementPauseTime > 0) {
             return;
         }
 
@@ -134,9 +150,9 @@ public class Player : MonoBehaviour {
         }
 
         if (goalTile.ItemOnTile is {Type: ItemType.TRAP}) {
-            Debug.Log("HIT A TRAP");
-            // TODO handle getting hit.
-            return false;
+            Debug.Log("Walking on a TRAP");
+            // TODO handle getting hit with sound and stuff.
+            return true;
         }
 
         return true;

@@ -14,7 +14,7 @@ class DoorTile : Tile {
     }
     
     public void ConfigureDoor(int x, int y, string linkedRoom) {
-        Debug.Log($"Linked door to {linkedRoom}({x},{y})");
+        // Debug.Log($"Linked door to {linkedRoom}({x},{y})");
         LinkedPosition = new Vector2Int(x, y);
         LinkedRoom = linkedRoom;
     }

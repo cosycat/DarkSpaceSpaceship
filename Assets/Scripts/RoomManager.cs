@@ -11,14 +11,21 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private GameObject goalPrefab;
     [SerializeField] private GameObject trapPrefab;
     [SerializeField] private GameObject obstaclePrefab;
+    [SerializeField] private GameObject deathPrefab;
+
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
+    [SerializeField] private Player playerPrefab;
+
+    [SerializeField] private Vector2Int spawnPoint;
+    [SerializeField] private string spawnRoom;
+    private float _deathTimer = 5f; // Time from moment of death until respawn.
 
     private List<Room> _rooms = null;
 
     private static RoomManager _instance;
 
-
+    public GameObject DeathPrefab => deathPrefab;
     public GameObject GoalPrefab => goalPrefab;
     public GameObject TrapPrefab => trapPrefab;
     public GameObject ObstaclePrefab => obstaclePrefab;
@@ -45,6 +52,19 @@ public class RoomManager : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+    }
+
+    private void Start() {
+        SpawnPlayer();
+    }
+
+    private void Update() {
+        if (Player.Instance.IsDead) {
+            _deathTimer -= Time.deltaTime;
+            if (_deathTimer <= 0) {
+                RoomManager.Instance.SpawnPlayer();
+            }
+        }
     }
 
     public void ChangeToRoom(string roomName, Vector2Int doorEnteredThrough, Player player) {
@@ -90,16 +110,13 @@ public class RoomManager : MonoBehaviour {
 
         Debug.Log("Destroying All Tiles");
         int i = 0;
-
         //Array to hold all child obj
         GameObject[] allChildren = new GameObject[transform.childCount];
-
         //Find all child obj and store to that array
         foreach (Transform child in transform) {
             allChildren[i] = child.gameObject;
             i += 1;
         }
-
         //Now destroy them
         foreach (GameObject child in allChildren) {
             // var tileGO = child.GetComponent<TileGO>();
@@ -107,14 +124,11 @@ public class RoomManager : MonoBehaviour {
             // tileGO.ConnectedTile.ItemOnTile?.DeleteGO();
             DestroyImmediate(child.gameObject);
         }
-        
         CurrentRoom.RemoveAllItemGameObjects();
-
         // destroy the darkness tiles to redraw them again on each tile of the new level.
         foreach (var darknessSprite in DarknessSprites) {
             Destroy(darknessSprite.gameObject);
         }
-
         DarknessSprites = new DarknessTileGO[0, 0];
     }
 
@@ -122,7 +136,7 @@ public class RoomManager : MonoBehaviour {
     public List<Room> Rooms {
         get { return _rooms ??= RoomLayouts.GetTestRooms(); }
     }
-
+    
     public DarknessTileGO GetDarknessTileGOAt(int x, int y) {
         try {
             return DarknessSprites[y, x];
@@ -135,4 +149,12 @@ public class RoomManager : MonoBehaviour {
     public DarknessTileGO[,] GetAllDarknessTiles() {
         return DarknessSprites;
     }
+
+    public void SpawnPlayer() {
+        if (Player.Instance != null) {
+            DestroyImmediate(Player.Instance);
+        }
+        ChangeToRoom(spawnRoom, spawnPoint, Instantiate(playerPrefab));
+    }
+    
 }
