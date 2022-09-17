@@ -6,7 +6,7 @@ public static class RoomLayouts {
             new Room("Room1", 4, 4,
                 "WWWW" +
                 "WFFW" +
-                "WFFW" +
+                "WFRW" +
                 "WWDW"),
             new Room("Room2", 6, 6,
                 "WWWDWW" +

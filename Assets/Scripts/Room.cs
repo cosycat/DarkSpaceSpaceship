@@ -57,6 +57,9 @@ public class Room {
                     case 'E':
                         tile = new Tile(TileType.EMPTY);
                         break;
+                    case 'R':
+                        tile = new Tile(Item.CreateRechargeItem(x, y, this));
+                        break;
                     default:
                         Debug.Log($"Skipped {c} in room {name}");
                         continue;

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour {
-    public int Charges { get; private set; } = 10;
+    public int Charges { get; private set; } = 6;
+    [SerializeField] private int rechargeAmount = 4;
 
     [SerializeField] private float flashReloadDuration = 1;
     private float _flashReloadTimer = 0;
@@ -44,6 +45,9 @@ public class Flashlight : MonoBehaviour {
     public void Flash() {
         Flash(flashFadeTime, flashStayTime);
     }
-    
-    
+
+
+    public void Recharge() {
+        Charges += rechargeAmount;
+    }
 }

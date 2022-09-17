@@ -12,7 +12,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private GameObject trapPrefab;
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private GameObject deathPrefab;
-
+    [SerializeField] private GameObject rechargePrefab;
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
     [SerializeField] private Player playerPrefab;
@@ -29,6 +29,8 @@ public class RoomManager : MonoBehaviour {
     public GameObject GoalPrefab => goalPrefab;
     public GameObject TrapPrefab => trapPrefab;
     public GameObject ObstaclePrefab => obstaclePrefab;
+    public GameObject RechargePrefab => rechargePrefab;
+
 
     public Room CurrentRoom { get; private set; }
     private DarknessTileGO[,] DarknessSprites { get; set; }

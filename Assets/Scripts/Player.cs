@@ -29,8 +29,10 @@ public class Player : MonoBehaviour {
     }
 
     private float _currentMovementPauseTime = 0; // Time the movement is paused after e.g. after running into a wall.
+    private Flashlight _flashlight;
 
     private void Awake() {
+        _flashlight = GetComponent<Flashlight>();
         if (Instance != null) {
             Debug.LogError("TWO PLAYERS");
             DestroyImmediate(Instance);
@@ -74,6 +76,9 @@ public class Player : MonoBehaviour {
             else if (goalTile.ItemOnTile is { Type: ItemType.GOAL }) {
                 // Debug.Log("Moved to goal!");
                 goalTile.ConsumeItem();
+            } else if (goalTile.ItemOnTile is { Type: ItemType.RECHARGE}) {
+                _flashlight.Recharge();
+                goalTile.ConsumeItem();
             }
             else if (goalTile.ItemOnTile is {Type: ItemType.TRAP}) {
                 // DIIIEEEE
@@ -92,7 +97,7 @@ public class Player : MonoBehaviour {
         GetComponent<SpriteRenderer>().enabled = false;
         tileToDieOn.ItemOnTile = Item.CreateDeathItem(_goalPosition.x, _goalPosition.y, RoomManager.Instance.CurrentRoom);
         tileToDieOn.ItemOnTile!.CreateGO();
-        GetComponent<Flashlight>().Flash(3, 1.5f);
+        _flashlight.Flash(3, 1.5f);
         // TODO frizzling sound
         IsDead = true;
     }

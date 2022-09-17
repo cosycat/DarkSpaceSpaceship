@@ -42,6 +42,8 @@ public class Item {
                 break;
             case ItemType.OBSTACLE:
                 break;
+            case ItemType.RECHARGE:
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -64,12 +66,17 @@ public class Item {
     public static Item CreateDeathItem(int x, int y, Room room) {
         return new Item(RoomManager.Instance.DeathPrefab, ItemType.DEATH, x, y, room);
     }
+    
+    public static Item CreateRechargeItem(int x, int y, Room room) {
+        return new Item(RoomManager.Instance.RechargePrefab, ItemType.RECHARGE, x, y, room);
+    }
 }
 
 public enum ItemType {
     GOAL,
     TRAP,
     OBSTACLE,
-    DEATH
+    DEATH,
+    RECHARGE
 }
 
