@@ -89,7 +89,6 @@ public class RoomManager : MonoBehaviour {
         }
 
         Debug.Log("Destroying All Tiles");
-        Debug.Log(transform.childCount);
         int i = 0;
 
         //Array to hold all child obj
@@ -108,9 +107,7 @@ public class RoomManager : MonoBehaviour {
             // tileGO.ConnectedTile.ItemOnTile?.DeleteGO();
             DestroyImmediate(child.gameObject);
         }
-
-        Debug.Log(transform.childCount);
-
+        
         CurrentRoom.RemoveAllItemGameObjects();
 
         // destroy the darkness tiles to redraw them again on each tile of the new level.

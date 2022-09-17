@@ -239,7 +239,7 @@ MonoBehaviour:
   floorTilePrefab: {fileID: 2164487782112378005, guid: e320b06ce57d34eb78c0f8061112d740, type: 3}
   wallTilePrefab: {fileID: -840198806754004390, guid: 02e6e0763d8cc494ea6d9a6699f5d37c, type: 3}
   doorTilePrefab: {fileID: -8340558430966359460, guid: 50ba2f8c80fcd488ca7079b90350a5be, type: 3}
-  emptyTilePrefab: {fileID: 0}
+  emptyTilePrefab: {fileID: 6247722508683668632, guid: 87ec81912a1224cf98c981f31d3c1821, type: 3}
   goalPrefab: {fileID: 2947966284021662193, guid: 1a4980450ea954e8197c13a4c88f94a7, type: 3}
   trapPrefab: {fileID: 7087798366085415266, guid: 7b1e9e57644f24bf1abfea189ede9483, type: 3}
   obstaclePrefab: {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}
@@ -259,26 +259,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1609566648 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8180721911482464163, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
-  m_PrefabInstance: {fileID: 8180721911016753330}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1609566652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609566648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51f0e52dc5ca64596b98d502829ef031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashTimerDuration: 1
-  flashStayTime: 1
-  flashFadeTime: 1
 --- !u!1001 &8180721911016753330
 PrefabInstance:
   m_ObjectHideFlags: 0
