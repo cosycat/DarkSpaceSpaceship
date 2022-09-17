@@ -8,11 +8,12 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO wallTilePrefab;
     [SerializeField] private TileGO doorTilePrefab;
     [SerializeField] private TileGO emptyTilePrefab;
-    [SerializeField] private GameObject goalPrefab;
-    [SerializeField] private GameObject trapPrefab;
-    [SerializeField] private GameObject obstaclePrefab;
+    
+    [SerializeField] private List<GameObject> goalPrefabs;
+    [SerializeField] private List<GameObject> trapPrefabs;
+    [SerializeField] private List<GameObject> obstaclePrefabs;
+    [SerializeField] private List<GameObject> rechargePrefabs;
     [SerializeField] private GameObject deathPrefab;
-    [SerializeField] private GameObject rechargePrefab;
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
     [SerializeField] private Player playerPrefab;
@@ -26,10 +27,10 @@ public class RoomManager : MonoBehaviour {
     private static RoomManager _instance;
 
     public GameObject DeathPrefab => deathPrefab;
-    public GameObject GoalPrefab => goalPrefab;
-    public GameObject TrapPrefab => trapPrefab;
-    public GameObject ObstaclePrefab => obstaclePrefab;
-    public GameObject RechargePrefab => rechargePrefab;
+    public List<GameObject> GoalPrefabs => goalPrefabs;
+    public List<GameObject> TrapPrefabs => trapPrefabs;
+    public List<GameObject> ObstaclePrefabs => obstaclePrefabs;
+    public List<GameObject> RechargePrefabs => rechargePrefabs;
 
 
     public Room CurrentRoom { get; private set; }
@@ -92,7 +93,7 @@ public class RoomManager : MonoBehaviour {
                     _ => floorTilePrefab
                 };
                 // Debug.Log($"Instantiating {tile.Type} at ({x},{y})");
-                var tileObject = Instantiate(prefab.gameObject, this.transform, true);
+                GameObject tileObject = Instantiate(prefab.gameObject, this.transform, true);
                 tileObject.GetComponent<TileGO>().ConnectedTile = tile;
                 tileObject.transform.position = new Vector3(x, y);
                 tile.ItemOnTile?.CreateGO();

@@ -50,25 +50,24 @@ public class Item {
         DeleteGO();
     }
 
-    public static Item CreateGoalItem(int x, int y, Room room) {
-        
-        return new Item(RoomManager.Instance.GoalPrefab, ItemType.GOAL, x, y, room);
+    public static Item CreateGoalItem(int x, int y, Room room, int goalNumber) {
+        return new Item(RoomManager.Instance.GoalPrefabs[goalNumber], ItemType.GOAL, x, y, room);
     }
 
-    public static Item CreateTrapItem(int x, int y, Room room) {
-        return new Item(RoomManager.Instance.TrapPrefab, ItemType.TRAP, x, y, room);
+    public static Item CreateTrapItem(int x, int y, Room room, int trapNumber) {
+        return new Item(RoomManager.Instance.TrapPrefabs[trapNumber], ItemType.TRAP, x, y, room);
     }
 
-    public static Item CreateObstacleItem(int x, int y, Room room) {
-        return new Item(RoomManager.Instance.ObstaclePrefab, ItemType.OBSTACLE, x, y, room);
+    public static Item CreateObstacleItem(int x, int y, Room room, int obstacleNumber) {
+        return new Item(RoomManager.Instance.ObstaclePrefabs[obstacleNumber], ItemType.OBSTACLE, x, y, room);
+    }
+
+    public static Item CreateRechargeItem(int x, int y, Room room, int rechargeNumber) {
+        return new Item(RoomManager.Instance.RechargePrefabs[rechargeNumber], ItemType.RECHARGE, x, y, room);
     }
 
     public static Item CreateDeathItem(int x, int y, Room room) {
         return new Item(RoomManager.Instance.DeathPrefab, ItemType.DEATH, x, y, room);
-    }
-    
-    public static Item CreateRechargeItem(int x, int y, Room room) {
-        return new Item(RoomManager.Instance.RechargePrefab, ItemType.RECHARGE, x, y, room);
     }
 }
 

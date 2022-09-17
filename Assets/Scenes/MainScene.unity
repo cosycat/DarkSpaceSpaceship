@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724788373}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: 15, z: -10}
+  m_LocalPosition: {x: 6, y: 6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,11 +240,26 @@ MonoBehaviour:
   wallTilePrefab: {fileID: -840198806754004390, guid: 02e6e0763d8cc494ea6d9a6699f5d37c, type: 3}
   doorTilePrefab: {fileID: -8340558430966359460, guid: 50ba2f8c80fcd488ca7079b90350a5be, type: 3}
   emptyTilePrefab: {fileID: 6247722508683668632, guid: 87ec81912a1224cf98c981f31d3c1821, type: 3}
-  goalPrefab: {fileID: 2947966284021662193, guid: 1a4980450ea954e8197c13a4c88f94a7, type: 3}
-  trapPrefab: {fileID: 7087798366085415266, guid: 7b1e9e57644f24bf1abfea189ede9483, type: 3}
-  obstaclePrefab: {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}
-  deathPrefab: {fileID: 6707066635653172389, guid: 24608264858ca4e93916652fc63987a6, type: 3}
-  rechargePrefab: {fileID: 7087798366085415266, guid: 4fc8a0dd9a91448f4b14632304eca5c6, type: 3}
+  goalPrefabs:
+  - {fileID: 1679004451449636708, guid: 93bdd2b16a67f47ca9bddec67331f58f, type: 3}
+  - {fileID: 1679004451449636708, guid: 6b1ab6d9bdd3e435ca52a48ee03b7b3a, type: 3}
+  - {fileID: 1679004451449636708, guid: 76f4e7ebeac404b6db4336d62ba18f22, type: 3}
+  - {fileID: 1679004451449636708, guid: 130fad83907f9428d8f9e65f26e86a14, type: 3}
+  trapPrefabs:
+  - {fileID: 5557009614745453844, guid: c084e95eb43fd4053a0caeb9692c4ea2, type: 3}
+  - {fileID: 5557009614745453844, guid: 572f999b4ab8c4a5b9ae0dd431e01889, type: 3}
+  obstaclePrefabs:
+  - {fileID: 5557009614745453844, guid: 60ebaaf76eba8443b90efcc3faca3033, type: 3}
+  - {fileID: 5557009614745453844, guid: 4847380bd69a3469db346333a4371d43, type: 3}
+  - {fileID: 5557009614745453844, guid: 5998ffb1fdbc240e49cbb7298db02fa7, type: 3}
+  - {fileID: 5557009614745453844, guid: 292023873b5164810939e6409d6b8f6d, type: 3}
+  - {fileID: 5557009614745453844, guid: 8832b2546536f43658047ea592d87283, type: 3}
+  - {fileID: 5557009614745453844, guid: a5c614e6bb8294ad99362f4dc6342748, type: 3}
+  - {fileID: 5557009614745453844, guid: 8ef3c17c0d35a4b92ab10f643c4d1a83, type: 3}
+  - {fileID: 5557009614745453844, guid: 6061227a24f9a4fc7b988b8881b77eea, type: 3}
+  rechargePrefabs:
+  - {fileID: 7087798366085415266, guid: 4fc8a0dd9a91448f4b14632304eca5c6, type: 3}
+  deathPrefab: {fileID: 6225835262265960281, guid: 8801a19737a0b4f47b36e9aa3ee3f48c, type: 3}
   darknessTilePrefab: {fileID: -2387907237166971549, guid: aa7df29e3597c416e9333a14e199e759, type: 3}
   playerPrefab: {fileID: 8180721911482464160, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
   spawnPoint: {x: 2, y: 1}
