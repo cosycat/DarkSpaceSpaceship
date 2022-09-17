@@ -1,14 +1,20 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Tile {
     
     public TileType Type { get; private set; }
 
-    public Tile(TileType type = TileType.FREE) {
+    [CanBeNull] private Item _item = null;
+
+    public Tile(TileType type = TileType.FLOOR) {
         Type = type;
     }
-    
+
+    public Tile(Item item) {
+        _item = item;
+    }
 }
 
 class DoorTile : Tile {

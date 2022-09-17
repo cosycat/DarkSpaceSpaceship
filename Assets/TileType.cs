@@ -1,8 +1,5 @@
 public enum TileType {
-    FREE,
+    FLOOR,
     WALL,
-    BASIC_TRAP,
-    GOAL,
-    BATTERY,
     DOOR
 }

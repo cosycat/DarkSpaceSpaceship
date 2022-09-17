@@ -8,9 +8,10 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private GameObject freeTilePrefab;
     [SerializeField] private GameObject wallTilePrefab;
     [SerializeField] private GameObject doorTilePrefab;
-    private GameObject goalTilePrefab;
-    private GameObject basicTrapTilePrefab;
-    private GameObject batteryTilePrefab;
+
+    [SerializeField] private GameObject goalPrefab;
+    [SerializeField] private GameObject trapPrefab;
+    [SerializeField] private GameObject obstaclePrefab;
 
     public Room CurrentRoom { get; private set; }
 
@@ -26,7 +27,7 @@ public class RoomManager : MonoBehaviour {
             for (int x = 0; x < room.width; x++) {
                 var tile = room.GetTileAt(x, y);
                 GameObject prefab = tile.Type switch {
-                    TileType.FREE => freeTilePrefab,
+                    TileType.FLOOR => freeTilePrefab,
                     TileType.WALL => wallTilePrefab,
                     TileType.DOOR => doorTilePrefab,
                     _ => freeTilePrefab
@@ -39,22 +40,7 @@ public class RoomManager : MonoBehaviour {
 
         CurrentRoom = room;
     }
-    
-    
-    public List<Room> Rooms => new List<Room>(new Room[]{
-        new Room("Room1", new[] {
-            new[] { new Tile(TileType.WALL), new Tile(TileType.WALL), new Tile(TileType.WALL), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(), new Tile(), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(TileType.GOAL), new Tile(), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(TileType.WALL), new DoorTile(2,0, "Room2"), new Tile(TileType.WALL) },
-        }),
-        new Room("Room2", new[] {
-            new[] { new Tile(TileType.WALL), new Tile(TileType.WALL), new DoorTile(2,3, "Room1"), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(), new Tile(), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(TileType.GOAL), new Tile(), new Tile(TileType.WALL) },
-            new[] { new Tile(TileType.WALL), new Tile(TileType.WALL), new Tile(TileType.WALL), new Tile(TileType.WALL) },
-        })
-    });
 
 
+    public List<Room> Rooms { get; } = RoomLayout.GetTestRooms();
 }
