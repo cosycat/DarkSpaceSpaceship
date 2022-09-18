@@ -51,3 +51,33 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: BumpWall
+    clip: {fileID: 8300000, guid: 0568bb4367eaf465eb10a9e84d8dd60a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Door
+    clip: {fileID: 8300000, guid: 3db07ee223c754aa09111a1e9476912d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Flash
+    clip: {fileID: 8300000, guid: ef8fbec7a93a34a9a97fa0fda4c43837, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FlashEmpty
+    clip: {fileID: 8300000, guid: 77ccc0920d0c542939e75a2ef55cb06a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DeathAndScream
+    clip: {fileID: 8300000, guid: 66a7eabe657694f83b3fd68f8f9ea0e6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
