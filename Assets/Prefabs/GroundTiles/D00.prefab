@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8470736282836831563}
   - component: {fileID: -8340558430966359460}
   m_Layer: 0
-  m_Name: DoorTile
+  m_Name: D00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: -823058595
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5188679, g: 0.38608563, b: 0.007342457, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0c00086daa2bf47c48f302f1bcd14ace, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -20,6 +20,7 @@ public class Tile {
     }
 
     public Tile(Item item) {
+        Type = TileType.FLOOR;
         ItemOnTile = item;
     }
 

@@ -9,7 +9,7 @@ class DoorTile : Tile {
     //     this.LinkedRoom = linkedRoom;
     // }
 
-    public DoorTile() : base(TileType.DOOR) {
+    public DoorTile(int doorNumber) : base(doorNumber == 0 ? TileType.DOOR_H_00 : TileType.DOOR_V_01) {
         
     }
     

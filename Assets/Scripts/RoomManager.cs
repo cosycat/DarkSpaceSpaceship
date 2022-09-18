@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO floorTilePrefab;
     [SerializeField] private TileGO wallTilePrefab;
-    [SerializeField] private TileGO doorTilePrefab;
+    [SerializeField] private TileGO doorHor00TilePrefab;
+    [SerializeField] private TileGO doorVert01TilePrefab;
     [SerializeField] private TileGO emptyTilePrefab;
     
     [SerializeField] private List<GameObject> goalPrefabs;
@@ -16,11 +18,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private GameObject deathPrefab;
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
-    [SerializeField] private Player playerPrefab;
 
-    [SerializeField] private Vector2Int spawnPoint;
-    [SerializeField] private string spawnRoom;
-    private float _deathTimer = 5f; // Time from moment of death until respawn.
 
     private List<Room> _rooms = null;
 
@@ -31,6 +29,9 @@ public class RoomManager : MonoBehaviour {
     public List<GameObject> TrapPrefabs => trapPrefabs;
     public List<GameObject> ObstaclePrefabs => obstaclePrefabs;
     public List<GameObject> RechargePrefabs => rechargePrefabs;
+    
+    public static GameObject InvisiblePrefab => new GameObject("Invisible",typeof(SpriteRenderer));
+
 
 
     public Room CurrentRoom { get; private set; }
@@ -57,17 +58,8 @@ public class RoomManager : MonoBehaviour {
         Instance = this;
     }
 
-    private void Start() {
-        SpawnPlayer();
-    }
-
     private void Update() {
-        if (Player.Instance.IsDead) {
-            _deathTimer -= Time.deltaTime;
-            if (_deathTimer <= 0) {
-                RoomManager.Instance.SpawnPlayer();
-            }
-        }
+        
     }
 
     public void ChangeToRoom(string roomName, Vector2Int doorEnteredThrough, Player player) {
@@ -88,7 +80,8 @@ public class RoomManager : MonoBehaviour {
                 var prefab = tile.Type switch {
                     TileType.FLOOR => floorTilePrefab,
                     TileType.WALL => wallTilePrefab,
-                    TileType.DOOR => doorTilePrefab,
+                    TileType.DOOR_H_00 => doorHor00TilePrefab,
+                    TileType.DOOR_V_01 => doorVert01TilePrefab,
                     TileType.EMPTY => emptyTilePrefab,
                     _ => floorTilePrefab
                 };
@@ -153,11 +146,9 @@ public class RoomManager : MonoBehaviour {
         return DarknessSprites;
     }
 
-    public void SpawnPlayer() {
-        if (Player.Instance != null) {
-            DestroyImmediate(Player.Instance);
-        }
-        ChangeToRoom(spawnRoom, spawnPoint, Instantiate(playerPrefab));
+    [CanBeNull]
+    public Room GetRoomWithName(string roomName) {
+        return Rooms.Find(room => room.Name == roomName);
     }
     
 }

@@ -44,7 +44,7 @@ public class Room {
                         tile = new Tile(TileType.FLOOR);
                         break;
                     case 'D':
-                        tile = new DoorTile();
+                        tile = new DoorTile(typeNumber);
                         break;
                     case 'E':
                         tile = new Tile(TileType.EMPTY);
@@ -55,8 +55,14 @@ public class Room {
                     case 'T':
                         tile = new Tile(Item.CreateTrapItem(x, y, this, typeNumber));
                         break;
+                    case 't':
+                        tile = new Tile(Item.CreateTrapItem(x, y, this, typeNumber, true));
+                        break;
                     case 'O':
                         tile = new Tile(Item.CreateObstacleItem(x, y, this, typeNumber));
+                        break;
+                    case 'o':
+                        tile = new Tile(Item.CreateObstacleItem(x, y, this, typeNumber, true));
                         break;
                     case 'R':
                         tile = new Tile(Item.CreateRechargeItem(x, y, this, typeNumber));

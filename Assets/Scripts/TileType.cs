@@ -1,6 +1,7 @@
 public enum TileType {
     FLOOR,
     WALL,
-    DOOR,
+    DOOR_H_00,
+    DOOR_V_01,
     EMPTY
 }
