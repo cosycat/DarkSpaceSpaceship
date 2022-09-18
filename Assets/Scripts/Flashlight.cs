@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour {
-
+    
+    private static readonly int FlashAnim = Animator.StringToHash("Flash");
+    
+    
     [SerializeField] private int rechargeAmount = 4;
 
     [SerializeField] private float flashReloadDuration = 1;
@@ -13,9 +16,9 @@ public class Flashlight : MonoBehaviour {
     [SerializeField] private float flashStayTime = 1f;
     [SerializeField] private float flashFadeTime = 1f;
     private Player _player;
-    
+
     [SerializeField] private int charges = 6;
-    
+
     public int Charges {
         get => charges;
         private set => charges = value;
@@ -35,9 +38,14 @@ public class Flashlight : MonoBehaviour {
 
     private void HandleFlashInput() {
         if (_player.IsMoving) return;
-        if (Charges <= 0) return;
+        if (Charges <= 0) {
+            AudioManager.Instance.Play("FlashEmpty");
+            return;
+        }
         _flashReloadTimer = flashReloadDuration;
         Charges -= 1;
+        AudioManager.Instance.Play("Flash");
+        _player.PlayerAnimator.SetTrigger(FlashAnim);
         Flash();
     }
 

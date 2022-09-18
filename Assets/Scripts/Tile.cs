@@ -26,5 +26,6 @@ public class Tile {
 
     public void ConsumeItem() {
         ItemOnTile?.OnConsume();
+        ItemOnTile = null;
     }
 }

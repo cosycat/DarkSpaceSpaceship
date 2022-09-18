@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour {
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
     
     public static Player Instance { get; private set; }
 
@@ -13,8 +15,10 @@ public class Player : MonoBehaviour {
     [SerializeField] private float movementPauseTime = 0.5f;
 
     [SerializeField] private Vector2Int currGridPosition = Vector2Int.zero;
-    
-    
+
+    public Animator PlayerAnimator { get; private set; }
+
+
     private Vector2Int _goalPosition = Vector2Int.zero;
     private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
@@ -24,10 +28,11 @@ public class Player : MonoBehaviour {
         get => _isMoving;
         private set {
             if (value) {
+                PlayerAnimator.SetBool(IsRunning, true);
                 AudioManager.Instance.Play("Waddle");
             } else {
+                PlayerAnimator.SetBool(IsRunning, false);
                 AudioManager.Instance.Stop("Waddle");
-
             }
             _isMoving = value;
         }
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Start() {
+        PlayerAnimator = GetComponent<Animator>();
         Debug.Log("Player Start");
     }
 
@@ -89,7 +95,11 @@ public class Player : MonoBehaviour {
             }
             else if (goalTile.ItemOnTile is { Type: ItemType.GOAL }) {
                 // Debug.Log("Moved to goal!");
-                goalTile.ConsumeItem();
+                if (RoomManager.Instance.CurrentHeldItem == null) {
+                    goalTile.ConsumeItem();
+                } else {
+                    AudioManager.Instance.Play("FailedAction");
+                }
             } else if (goalTile.ItemOnTile is { Type: ItemType.RECHARGE}) {
                 _flashlight.Recharge();
                 goalTile.ConsumeItem();
@@ -105,6 +115,7 @@ public class Player : MonoBehaviour {
         Vector3 goalPos3D = new Vector3(_goalPosition.x, _goalPosition.y);
         Vector3 startPos3D = new Vector3(_startPosition.x, _startPosition.y);
         transform.position = Vector3.Lerp(startPos3D, goalPos3D, currMovementTime);
+        
     }
 
     private void Die(Tile tileToDieOn) {
@@ -124,17 +135,22 @@ public class Player : MonoBehaviour {
         _startPosition = currGridPosition;
         _goalPosition = _startPosition;
         _moveStartTime = Time.timeSinceLevelLoad;
+        int angle = 0;
         if (Input.GetAxis("Horizontal") < 0) {
             _goalPosition.x -= 1;
+            angle = 90;
         }
         else if (Input.GetAxis("Horizontal") > 0) {
             _goalPosition.x += 1;
+            angle = -90;
         }
         else if (Input.GetAxis("Vertical") < 0) {
             _goalPosition.y -= 1;
+            angle = 180;
         }
         else if (Input.GetAxis("Vertical") > 0) {
             _goalPosition.y += 1;
+            angle = 0;
         }
 
         if (_goalPosition != _startPosition) {
@@ -144,6 +160,7 @@ public class Player : MonoBehaviour {
                 return;
             }
             IsMoving = true;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
             var goalDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(_goalPosition.x, _goalPosition.y);
             goalDarknessTGO.Brighten(movementTime);
             var currentDarknessTGO = RoomManager.Instance.GetDarknessTileGOAt(currGridPosition.x, currGridPosition.y);

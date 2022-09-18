@@ -49,6 +49,7 @@ MonoBehaviour:
   doorHor00TilePrefab: {fileID: -8340558430966359460, guid: be87e60fcfdf34bee9d658e17238467b, type: 3}
   doorVert01TilePrefab: {fileID: -8340558430966359460, guid: e5af0a1c9dbd04d2193acb0fafd3fd55, type: 3}
   emptyTilePrefab: {fileID: 6247722508683668632, guid: 87ec81912a1224cf98c981f31d3c1821, type: 3}
+  dropOffTilePrefab: {fileID: 2164487782112378005, guid: 1603b39a3b98241e2aae7aa71567c6a8, type: 3}
   goalPrefabs:
   - {fileID: 1679004451449636708, guid: 93bdd2b16a67f47ca9bddec67331f58f, type: 3}
   - {fileID: 1679004451449636708, guid: 6b1ab6d9bdd3e435ca52a48ee03b7b3a, type: 3}
@@ -73,3 +74,4 @@ MonoBehaviour:
   - {fileID: 7087798366085415266, guid: 4fc8a0dd9a91448f4b14632304eca5c6, type: 3}
   deathPrefab: {fileID: 6225835262265960281, guid: 8801a19737a0b4f47b36e9aa3ee3f48c, type: 3}
   darknessTilePrefab: {fileID: -2387907237166971549, guid: aa7df29e3597c416e9333a14e199e759, type: 3}
+  inventoryItemImage: {fileID: 0}

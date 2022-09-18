@@ -49,6 +49,9 @@ public class Room {
                     case 'E':
                         tile = new Tile(TileType.EMPTY);
                         break;
+                    case 'Z':
+                        tile = new Tile(TileType.DROP_OFF);
+                        break;
                     case 'G':
                         tile = new Tile(Item.CreateGoalItem(x, y, this, typeNumber));
                         break;
