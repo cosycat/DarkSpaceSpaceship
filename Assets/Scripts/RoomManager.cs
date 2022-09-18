@@ -22,6 +22,8 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private DarknessTileGO darknessTilePrefab;
 
     [SerializeField] private Image inventoryItemImage;
+    
+    
 
 
     [CanBeNull] private Item _currentHeldItem = null;

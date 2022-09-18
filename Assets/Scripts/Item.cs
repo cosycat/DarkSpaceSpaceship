@@ -38,7 +38,6 @@ public class Item {
     public void OnConsume() {
         switch (Type) {
             case ItemType.GOAL:
-                // TODO What happens if we reach a goal?
                 Debug.Log("Reached Goal!");
                 RoomManager.Instance.CurrentHeldItem = this;
                 AudioManager.Instance.Play("ItemFound");

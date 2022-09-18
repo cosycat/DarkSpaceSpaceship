@@ -93,6 +93,9 @@ public class Player : MonoBehaviour {
                     RoomManager.Instance.ChangeToRoom(doorTile.LinkedRoom, (Vector2Int)doorTile.LinkedPosition, this);
                 }
             }
+            else if (goalTile.Type == TileType.DROP_OFF) {
+                OnDropOffPointReached();
+            }
             else if (goalTile.ItemOnTile is { Type: ItemType.GOAL }) {
                 // Debug.Log("Moved to goal!");
                 if (RoomManager.Instance.CurrentHeldItem == null) {
@@ -116,6 +119,17 @@ public class Player : MonoBehaviour {
         Vector3 startPos3D = new Vector3(_startPosition.x, _startPosition.y);
         transform.position = Vector3.Lerp(startPos3D, goalPos3D, currMovementTime);
         
+    }
+
+    private static void OnDropOffPointReached() {
+        if (RoomManager.Instance.CurrentHeldItem != null) {
+            AudioManager.Instance.Play("UnloadItem");
+            RoomManager.Instance.CurrentHeldItem = null;
+            
+        }
+        else {
+            AudioManager.Instance.Play("FailedAction");
+        }
     }
 
     private void Die(Tile tileToDieOn) {
