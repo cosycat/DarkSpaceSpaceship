@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
     
     [SerializeField] private float movementTime = 0.3f;
     [SerializeField] private float movementPauseTime = 0.5f;
-
+    
     [SerializeField] private Vector2Int currGridPosition = Vector2Int.zero;
 
     public Animator PlayerAnimator { get; private set; }
@@ -121,11 +121,14 @@ public class Player : MonoBehaviour {
         
     }
 
-    private static void OnDropOffPointReached() {
+    private void OnDropOffPointReached() {
         if (RoomManager.Instance.CurrentHeldItem != null) {
             AudioManager.Instance.Play("UnloadItem");
             RoomManager.Instance.CurrentHeldItem = null;
-            
+            RoomManager.Instance.CurrGoalItems++;
+            if (RoomManager.Instance.CurrGoalItems == RoomManager.Instance.TotalGoalItemsNeeded) {
+                GameController.Instance.HandleWin();
+            }
         }
         else {
             AudioManager.Instance.Play("FailedAction");

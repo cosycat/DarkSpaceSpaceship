@@ -103,6 +103,13 @@ public class GameController : MonoBehaviour {
         HasWon = false;
         SceneManager.LoadScene(EndSceneNumber, LoadSceneMode.Single);
     }
+    
+    public void HandleWin() {
+        Debug.Log("WON THE GAME!");
+        IsPlaying = false;
+        HasWon = true;
+        SceneManager.LoadScene(EndSceneNumber, LoadSceneMode.Single);
+    }
 
     public void SpawnPlayerInitial() {
         SpawnPlayerAt(startingPoint);
