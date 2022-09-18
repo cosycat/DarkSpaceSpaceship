@@ -125,7 +125,7 @@ public class Player : MonoBehaviour {
         if (RoomManager.Instance.CurrentHeldItem != null) {
             AudioManager.Instance.Play("UnloadItem");
             RoomManager.Instance.CurrentHeldItem = null;
-            RoomManager.Instance.CurrGoalItems++;
+            RoomManager.Instance.CurrGoalItems = RoomManager.Instance.CurrGoalItems + 1;
             if (RoomManager.Instance.CurrGoalItems >= RoomManager.Instance.TotalGoalItemsNeeded) {
                 GameController.Instance.HandleWin();
             }
@@ -200,12 +200,12 @@ public class Player : MonoBehaviour {
 
         if (goalTile.ItemOnTile is { Type: ItemType.OBSTACLE }) {
             // Debug.Log("obstacle");
+            AudioManager.Instance.Play("BumpWall"); // Todo maybe different sound for obstacle than wall
             return false;
         }
 
         if (goalTile.ItemOnTile is {Type: ItemType.TRAP}) {
             Debug.Log("Walking on a TRAP");
-            // TODO handle getting hit with sound and stuff.
             return true;
         }
 

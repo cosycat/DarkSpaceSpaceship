@@ -26,11 +26,20 @@ public class RoomManager : MonoBehaviour {
 
     [SerializeField] private int totalGoalItemsNeeded = 2;
     public int TotalGoalItemsNeeded => totalGoalItemsNeeded;
-    public int CurrGoalItems { get; set; } = 0;
+    private int _currGoalItems = 0;
+    public int CurrGoalItems {
+        get => _currGoalItems;
+        set {
+            _currGoalItems = value;
+            itemCounter.GetComponent<TextMeshProUGUI>().text = $"Items: {_currGoalItems}/{TotalGoalItemsNeeded}";
+        }
+    }
 
     [SerializeField] private GameObject introText;
     [SerializeField] private GameObject flashCounter;
+    [SerializeField] private GameObject itemCounter;
     public GameObject FlashCounter => flashCounter;
+    public GameObject ItemCounter => itemCounter;
 
 
     [CanBeNull] private Item _currentHeldItem = null;
@@ -85,6 +94,10 @@ public class RoomManager : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+    }
+
+    private void Start() {
+        CurrGoalItems = 0;
     }
 
     private void Update() {
