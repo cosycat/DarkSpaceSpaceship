@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour {
-    public int Charges { get; private set; } = 6;
+
     [SerializeField] private int rechargeAmount = 4;
 
     [SerializeField] private float flashReloadDuration = 1;
@@ -13,6 +13,13 @@ public class Flashlight : MonoBehaviour {
     [SerializeField] private float flashStayTime = 1f;
     [SerializeField] private float flashFadeTime = 1f;
     private Player _player;
+    
+    [SerializeField] private int charges = 6;
+    
+    public int Charges {
+        get => charges;
+        private set => charges = value;
+    }
 
     private void Awake() {
         _player = GetComponent<Player>();
