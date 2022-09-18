@@ -3,5 +3,6 @@ public enum TileType {
     WALL,
     DOOR_H_00,
     DOOR_V_01,
-    EMPTY
+    EMPTY,
+    DROP_OFF
 }

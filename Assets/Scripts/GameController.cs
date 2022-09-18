@@ -50,12 +50,16 @@ public class GameController : MonoBehaviour {
             for (var y = 0; y < room.height; y++) {
                 for (var x = 0; x < room.width; x++) {
                     var tile = room.GetTileAt(x, y);
+                    if (tile == null) {
+                        Debug.LogError($"Tile {tile}({x},{y}) == null!");
+                        continue;
+                    }
                     if (tile!.ItemOnTile != null) {
-                        Debug.Log($"FindRespawnPoints - checking tile ({x},{y}) = {tile.ItemOnTile.Type}:{tile.ItemOnTile.ItemNumber}");
+                        // Debug.Log($"FindRespawnPoints - checking tile ({x},{y}) = {tile.ItemOnTile.Type}:{tile.ItemOnTile.ItemNumber}");
                     }
                     if (tile is { ItemOnTile: { Type: ItemType.OBSTACLE, ItemNumber: RespawnObjectNumber } }) {
                         _cryoChamberRespawnPoints.Add(new RoomPosition(room.Name, new Vector2Int(x, y)));
-                        Debug.Log("Found Cryochamber");
+                        // Debug.Log("Found Cryochamber");
                     }
                 }
             }

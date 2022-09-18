@@ -11,6 +11,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO doorHor00TilePrefab;
     [SerializeField] private TileGO doorVert01TilePrefab;
     [SerializeField] private TileGO emptyTilePrefab;
+    [SerializeField] private TileGO dropOffTilePrefab;
 
     [SerializeField] private List<GameObject> goalPrefabs;
     [SerializeField] private List<GameObject> trapPrefabs;
@@ -100,6 +101,7 @@ public class RoomManager : MonoBehaviour {
                     TileType.DOOR_H_00 => doorHor00TilePrefab,
                     TileType.DOOR_V_01 => doorVert01TilePrefab,
                     TileType.EMPTY => emptyTilePrefab,
+                    TileType.DROP_OFF => dropOffTilePrefab,
                     _ => floorTilePrefab
                 };
                 // Debug.Log($"Instantiating {tile.Type} at ({x},{y})");
