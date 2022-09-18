@@ -40,12 +40,16 @@ public class Item {
             case ItemType.GOAL:
                 // TODO What happens if we reach a goal?
                 Debug.Log("Reached Goal!");
+                RoomManager.Instance.CurrentHeldItem = this;
+                AudioManager.Instance.Play("ItemFound");
                 break;
             case ItemType.TRAP:
                 break;
             case ItemType.OBSTACLE:
                 break;
             case ItemType.RECHARGE:
+                break;
+            case ItemType.DEATH:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

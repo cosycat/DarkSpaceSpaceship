@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour {
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
-
+    
     public static Player Instance { get; private set; }
 
     private Room _currRoom;
@@ -95,7 +95,11 @@ public class Player : MonoBehaviour {
             }
             else if (goalTile.ItemOnTile is { Type: ItemType.GOAL }) {
                 // Debug.Log("Moved to goal!");
-                goalTile.ConsumeItem();
+                if (RoomManager.Instance.CurrentHeldItem == null) {
+                    goalTile.ConsumeItem();
+                } else {
+                    AudioManager.Instance.Play("FailedAction");
+                }
             } else if (goalTile.ItemOnTile is { Type: ItemType.RECHARGE}) {
                 _flashlight.Recharge();
                 goalTile.ConsumeItem();

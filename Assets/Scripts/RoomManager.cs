@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO floorTilePrefab;
@@ -10,7 +11,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO doorHor00TilePrefab;
     [SerializeField] private TileGO doorVert01TilePrefab;
     [SerializeField] private TileGO emptyTilePrefab;
-    
+
     [SerializeField] private List<GameObject> goalPrefabs;
     [SerializeField] private List<GameObject> trapPrefabs;
     [SerializeField] private List<GameObject> obstaclePrefabs;
@@ -19,6 +20,25 @@ public class RoomManager : MonoBehaviour {
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
 
+    [SerializeField] private Image inventoryItemImage;
+
+
+    [CanBeNull] private Item _currentHeldItem = null;
+
+    [CanBeNull]
+    public Item CurrentHeldItem {
+        get => _currentHeldItem;
+        set {
+            if (value != null) {
+                inventoryItemImage.gameObject.SetActive(true);
+                inventoryItemImage.sprite = value.ItemPrefab.GetComponent<SpriteRenderer>().sprite;
+            }
+            else {
+                inventoryItemImage.gameObject.SetActive(false);
+            }
+            _currentHeldItem = value;
+        }
+    }
 
     private List<Room> _rooms = null;
 
@@ -29,9 +49,8 @@ public class RoomManager : MonoBehaviour {
     public List<GameObject> TrapPrefabs => trapPrefabs;
     public List<GameObject> ObstaclePrefabs => obstaclePrefabs;
     public List<GameObject> RechargePrefabs => rechargePrefabs;
-    
-    public static GameObject InvisiblePrefab => new GameObject("Invisible",typeof(SpriteRenderer));
 
+    public static GameObject InvisiblePrefab => new GameObject("Invisible", typeof(SpriteRenderer));
 
 
     public Room CurrentRoom { get; private set; }
@@ -58,9 +77,7 @@ public class RoomManager : MonoBehaviour {
         Instance = this;
     }
 
-    private void Update() {
-        
-    }
+    private void Update() { }
 
     public void ChangeToRoom(string roomName, Vector2Int doorEnteredThrough, Player player) {
         Debug.Log($"Changing from {CurrentRoom?.Name} to Room {roomName}");
@@ -113,6 +130,7 @@ public class RoomManager : MonoBehaviour {
             allChildren[i] = child.gameObject;
             i += 1;
         }
+
         //Now destroy them
         foreach (GameObject child in allChildren) {
             // var tileGO = child.GetComponent<TileGO>();
@@ -120,11 +138,13 @@ public class RoomManager : MonoBehaviour {
             // tileGO.ConnectedTile.ItemOnTile?.DeleteGO();
             DestroyImmediate(child.gameObject);
         }
+
         CurrentRoom.RemoveAllItemGameObjects();
         // destroy the darkness tiles to redraw them again on each tile of the new level.
         foreach (var darknessSprite in DarknessSprites) {
             Destroy(darknessSprite.gameObject);
         }
+
         DarknessSprites = new DarknessTileGO[0, 0];
     }
 
@@ -132,7 +152,7 @@ public class RoomManager : MonoBehaviour {
     public List<Room> Rooms {
         get { return _rooms ??= RoomLayouts.GetTestRooms(); }
     }
-    
+
     public DarknessTileGO GetDarknessTileGOAt(int x, int y) {
         try {
             return DarknessSprites[y, x];
@@ -150,5 +170,4 @@ public class RoomManager : MonoBehaviour {
     public Room GetRoomWithName(string roomName) {
         return Rooms.Find(room => room.Name == roomName);
     }
-    
 }
