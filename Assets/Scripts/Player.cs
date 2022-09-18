@@ -80,7 +80,7 @@ public class Player : MonoBehaviour {
             var goalTile = RoomManager.Instance.CurrentRoom.GetTileAt(_goalPosition.x, _goalPosition.y);
             if (goalTile == null) throw new Exception($"We moved onto a non existing tile at ({_goalPosition.x},{_goalPosition.y}) in room {RoomManager.Instance.CurrentRoom.Name}");
             
-            if (goalTile is { Type: TileType.DOOR }) {
+            if (goalTile.Type is TileType.DOOR_H_00 or TileType.DOOR_V_01 ) {
                 Debug.Log("Moved to a door!");
                 DoorTile doorTile = (DoorTile)goalTile;
                 if (doorTile.LinkedRoom != null && doorTile.LinkedPosition != null) {

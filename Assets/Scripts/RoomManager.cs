@@ -6,7 +6,8 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour {
     [SerializeField] private TileGO floorTilePrefab;
     [SerializeField] private TileGO wallTilePrefab;
-    [SerializeField] private TileGO doorTilePrefab;
+    [SerializeField] private TileGO doorHor00TilePrefab;
+    [SerializeField] private TileGO doorVert01TilePrefab;
     [SerializeField] private TileGO emptyTilePrefab;
     
     [SerializeField] private List<GameObject> goalPrefabs;
@@ -31,6 +32,9 @@ public class RoomManager : MonoBehaviour {
     public List<GameObject> TrapPrefabs => trapPrefabs;
     public List<GameObject> ObstaclePrefabs => obstaclePrefabs;
     public List<GameObject> RechargePrefabs => rechargePrefabs;
+    
+    public static GameObject InvisiblePrefab => new GameObject("Invisible",typeof(SpriteRenderer));
+
 
 
     public Room CurrentRoom { get; private set; }
@@ -88,7 +92,8 @@ public class RoomManager : MonoBehaviour {
                 var prefab = tile.Type switch {
                     TileType.FLOOR => floorTilePrefab,
                     TileType.WALL => wallTilePrefab,
-                    TileType.DOOR => doorTilePrefab,
+                    TileType.DOOR_H_00 => doorHor00TilePrefab,
+                    TileType.DOOR_V_01 => doorVert01TilePrefab,
                     TileType.EMPTY => emptyTilePrefab,
                     _ => floorTilePrefab
                 };
