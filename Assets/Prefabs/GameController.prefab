@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 8180721911482464160, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
-  spawnPoint: {x: 2, y: 1}
-  spawnRoom: StasisRoom
-  deathTimer: 5
+  startingPoint:
+    roomName: StasisRoom
+    position: {x: 2, y: 2}
+  deathTime: 5

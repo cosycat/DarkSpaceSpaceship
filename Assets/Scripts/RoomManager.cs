@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour {
@@ -144,6 +145,10 @@ public class RoomManager : MonoBehaviour {
     public DarknessTileGO[,] GetAllDarknessTiles() {
         return DarknessSprites;
     }
-    
+
+    [CanBeNull]
+    public Room GetRoomWithName(string roomName) {
+        return Rooms.Find(room => room.Name == roomName);
+    }
     
 }
