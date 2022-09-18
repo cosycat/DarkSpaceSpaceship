@@ -81,3 +81,33 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: ItemFound
+    clip: {fileID: 8300000, guid: 531e61a11ef49408196a0856f3aa1aac, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FailedAction
+    clip: {fileID: 8300000, guid: 111d4877239bd447a97ce10eb90922b4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Loosesound
+    clip: {fileID: 8300000, guid: fcff78b04d95d4617b01874f91b1a4c8, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Winsound
+    clip: {fileID: 8300000, guid: 6e90d21ce610f43b5900c282b4087d49, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LampCharge
+    clip: {fileID: 8300000, guid: 887d696d284d649869e30ce30ef8482f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

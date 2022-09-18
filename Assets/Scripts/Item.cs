@@ -48,6 +48,7 @@ public class Item {
             case ItemType.OBSTACLE:
                 break;
             case ItemType.RECHARGE:
+                AudioManager.Instance.Play("LampCharge");
                 break;
             case ItemType.DEATH:
                 break;
