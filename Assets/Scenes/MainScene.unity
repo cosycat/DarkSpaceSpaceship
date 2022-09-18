@@ -340,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 1946336668}
     - target: {fileID: 245250977281543255, guid: 3f7f21768ea8941dd8d0d357dfc2bf8a, type: 3}
       propertyPath: totalGoalItemsNeeded
-      value: 2
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 245250977281543255, guid: 3f7f21768ea8941dd8d0d357dfc2bf8a, type: 3}
       propertyPath: goalPrefabs.Array.size
@@ -822,7 +822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2720762929087112110, guid: 22ee768a421fb44dfa081a94a4a00d3a, type: 3}
       propertyPath: startingPoint.position.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2720762929087112111, guid: 22ee768a421fb44dfa081a94a4a00d3a, type: 3}
       propertyPath: m_RootOrder

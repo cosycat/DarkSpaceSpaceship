@@ -126,7 +126,7 @@ public class Player : MonoBehaviour {
             AudioManager.Instance.Play("UnloadItem");
             RoomManager.Instance.CurrentHeldItem = null;
             RoomManager.Instance.CurrGoalItems++;
-            if (RoomManager.Instance.CurrGoalItems == RoomManager.Instance.TotalGoalItemsNeeded) {
+            if (RoomManager.Instance.CurrGoalItems >= RoomManager.Instance.TotalGoalItemsNeeded) {
                 GameController.Instance.HandleWin();
             }
         }
