@@ -31,6 +31,10 @@ public class AudioManager : MonoBehaviour {
             Debug.LogError($"sound {name} not found");
             return;
         }
+
+        if (name != "Waddle") {
+            Debug.Log($"Playing {name}");
+        }
         sound.source.Play();
     }
 
