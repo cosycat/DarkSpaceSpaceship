@@ -112,7 +112,7 @@ public class Player : MonoBehaviour {
         tileToDieOn.ItemOnTile = Item.CreateDeathItem(_goalPosition.x, _goalPosition.y, RoomManager.Instance.CurrentRoom);
         tileToDieOn.ItemOnTile!.CreateGO();
         _flashlight.Flash(3, 1.5f);
-        AudioManager.Instance.Play("DeathAndScream");
+        // TODO frizzling sound
         IsDead = true;
     }
 
@@ -172,10 +172,6 @@ public class Player : MonoBehaviour {
             Debug.Log("Walking on a TRAP");
             // TODO handle getting hit with sound and stuff.
             return true;
-        }
-
-        if (goalTile.Type is TileType.DOOR_H_00 or TileType.DOOR_V_01) {
-            AudioManager.Instance.Play("Door");
         }
 
         return true;
