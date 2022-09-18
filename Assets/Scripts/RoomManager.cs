@@ -29,6 +29,9 @@ public class RoomManager : MonoBehaviour {
     public int CurrGoalItems { get; set; } = 0;
 
     [SerializeField] private GameObject introText;
+    [SerializeField] private GameObject flashCounter;
+    public GameObject FlashCounter => flashCounter;
+
 
     [CanBeNull] private Item _currentHeldItem = null;
 

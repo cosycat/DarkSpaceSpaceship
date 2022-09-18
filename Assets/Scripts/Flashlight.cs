@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Flashlight : MonoBehaviour {
@@ -21,11 +22,18 @@ public class Flashlight : MonoBehaviour {
 
     public int Charges {
         get => charges;
-        private set => charges = value;
+        private set {
+            RoomManager.Instance.FlashCounter.GetComponent<TextMeshProUGUI>().text = "Flashes Left: " + value;
+            charges = value;
+        }
     }
 
     private void Awake() {
         _player = GetComponent<Player>();
+    }
+
+    private void Start() {
+        Charges = Charges; // to set the text at the beginning.
     }
 
     private void Update() {
