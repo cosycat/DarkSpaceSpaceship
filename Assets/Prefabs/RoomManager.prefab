@@ -68,10 +68,8 @@ MonoBehaviour:
   - {fileID: 5557009614745453844, guid: 6061227a24f9a4fc7b988b8881b77eea, type: 3}
   - {fileID: 6451432563155672473, guid: cbc06e8b6724f4780a8ccd4a523ca89e, type: 3}
   - {fileID: 6451432563155672473, guid: e6430d7d0d6d04746a6f404c847e7282, type: 3}
+  - {fileID: 6451432563155672473, guid: 669775abf23d74c9387f88e0f4d8adcf, type: 3}
   rechargePrefabs:
   - {fileID: 7087798366085415266, guid: 4fc8a0dd9a91448f4b14632304eca5c6, type: 3}
   deathPrefab: {fileID: 6225835262265960281, guid: 8801a19737a0b4f47b36e9aa3ee3f48c, type: 3}
   darknessTilePrefab: {fileID: -2387907237166971549, guid: aa7df29e3597c416e9333a14e199e759, type: 3}
-  playerPrefab: {fileID: 8180721911482464160, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
-  spawnPoint: {x: 2, y: 1}
-  spawnRoom: StasisRoom

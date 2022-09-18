@@ -28,8 +28,7 @@ public class GameController : MonoBehaviour {
     private List<RoomPosition> _cryoChamberRespawnPoints;
 
     public static GameController Instance { get; private set; }
-
-
+    
 
     private void Awake() {
         Debug.Log("GameController::Awake");
@@ -51,7 +50,7 @@ public class GameController : MonoBehaviour {
             for (var y = 0; y < room.height; y++) {
                 for (var x = 0; x < room.width; x++) {
                     var tile = room.GetTileAt(x, y);
-                    if (tile.ItemOnTile != null) {
+                    if (tile!.ItemOnTile != null) {
                         Debug.Log($"FindRespawnPoints - checking tile ({x},{y}) = {tile.ItemOnTile.Type}:{tile.ItemOnTile.ItemNumber}");
                     }
                     if (tile is { ItemOnTile: { Type: ItemType.OBSTACLE, ItemNumber: RespawnObjectNumber } }) {
