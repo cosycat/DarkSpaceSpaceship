@@ -17,11 +17,7 @@ public class RoomManager : MonoBehaviour {
     [SerializeField] private GameObject deathPrefab;
 
     [SerializeField] private DarknessTileGO darknessTilePrefab;
-    [SerializeField] private Player playerPrefab;
 
-    [SerializeField] private Vector2Int spawnPoint;
-    [SerializeField] private string spawnRoom;
-    private float _deathTimer = 5f; // Time from moment of death until respawn.
 
     private List<Room> _rooms = null;
 
@@ -61,17 +57,8 @@ public class RoomManager : MonoBehaviour {
         Instance = this;
     }
 
-    private void Start() {
-        SpawnPlayer();
-    }
-
     private void Update() {
-        if (Player.Instance.IsDead) {
-            _deathTimer -= Time.deltaTime;
-            if (_deathTimer <= 0) {
-                RoomManager.Instance.SpawnPlayer();
-            }
-        }
+        
     }
 
     public void ChangeToRoom(string roomName, Vector2Int doorEnteredThrough, Player player) {
@@ -157,12 +144,6 @@ public class RoomManager : MonoBehaviour {
     public DarknessTileGO[,] GetAllDarknessTiles() {
         return DarknessSprites;
     }
-
-    public void SpawnPlayer() {
-        if (Player.Instance != null) {
-            DestroyImmediate(Player.Instance);
-        }
-        ChangeToRoom(spawnRoom, spawnPoint, Instantiate(playerPrefab));
-    }
+    
     
 }
