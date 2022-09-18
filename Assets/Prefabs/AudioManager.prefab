@@ -65,8 +65,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Flash
     clip: {fileID: 8300000, guid: ef8fbec7a93a34a9a97fa0fda4c43837, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.266
+    pitch: 1.62
     loop: 0
     source: {fileID: 0}
   - name: FlashEmpty
