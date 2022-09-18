@@ -18,8 +18,21 @@ public class Player : MonoBehaviour {
     private Vector2Int _goalPosition = Vector2Int.zero;
     private Vector2Int _startPosition = Vector2Int.zero;
     private float _moveStartTime;
-    
-    public bool IsMoving { get; private set; } = false;
+
+    private bool _isMoving = false;
+    public bool IsMoving {
+        get => _isMoving;
+        private set {
+            if (value) {
+                AudioManager.Instance.Play("Waddle");
+            } else {
+                AudioManager.Instance.Stop("Waddle");
+
+            }
+            _isMoving = value;
+        }
+    }
+
     public bool IsDead { get; private set; } = false;
 
 
