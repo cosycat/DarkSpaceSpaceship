@@ -102,7 +102,6 @@ MonoBehaviour:
   movementTime: 0.3
   movementPauseTime: 0.2
   currGridPosition: {x: 0, y: 0}
-  animator: {fileID: 0}
 --- !u!114 &4889735347150963588
 MonoBehaviour:
   m_ObjectHideFlags: 0

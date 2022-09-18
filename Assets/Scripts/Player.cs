@@ -194,6 +194,7 @@ public class Player : MonoBehaviour {
         if (goalTile == null || goalTile.Type is TileType.WALL or TileType.EMPTY) {
             // It can be null, if we are on a door and try to immediately turn back.
             // Debug.Log("wall");
+            AudioManager.Instance.Play("BumpWall");
             return false;
         }
 
