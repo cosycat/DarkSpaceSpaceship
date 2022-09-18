@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,7 @@ public class RoomManager : MonoBehaviour {
     public int TotalGoalItemsNeeded => totalGoalItemsNeeded;
     public int CurrGoalItems { get; set; } = 0;
 
+    [SerializeField] private GameObject introText;
 
     [CanBeNull] private Item _currentHeldItem = null;
 
@@ -82,7 +84,15 @@ public class RoomManager : MonoBehaviour {
         Instance = this;
     }
 
-    private void Update() { }
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.I) && !introText.gameObject.activeInHierarchy) {
+            introText.gameObject.SetActive(true);
+        }
+        else if (Input.anyKeyDown) {
+            introText.gameObject.SetActive(false);
+        }
+
+    }
 
     public void ChangeToRoom(string roomName, Vector2Int doorEnteredThrough, Player player) {
         Debug.Log($"Changing from {CurrentRoom?.Name} to Room {roomName}");
