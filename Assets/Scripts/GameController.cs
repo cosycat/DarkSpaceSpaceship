@@ -2,10 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
+    [SerializeField] private int mainSceneNumber = 0;
+    [SerializeField] private int endSceneNumber = 1;
+    public int MainSceneNumber => mainSceneNumber;
+    public int EndSceneNumber => endSceneNumber;
+
     public bool IsPlaying { get; private set; } = true;
+    public bool HasWon { get; private set; }
     
     [SerializeField] private Player playerPrefab;
 
@@ -22,18 +29,20 @@ public class GameController : MonoBehaviour {
 
     public static GameController Instance { get; private set; }
 
+
+
     private void Awake() {
+        Debug.Log("GameController::Awake");
+        DontDestroyOnLoad(gameObject);
         if (Instance != null) {
             DestroyImmediate(Instance.gameObject);
         }
         Instance = this;
-        _deathTimer = deathTime;
     }
 
     private void Start() {
-        FindRespawnPoints();
-        
-        SpawnPlayerInitial();
+        Debug.Log("GameController::Start");
+        ReStartGame();
     }
 
     private void FindRespawnPoints() {
@@ -69,9 +78,7 @@ public class GameController : MonoBehaviour {
 
     public void ReSpawnPlayer() {
         if (_cryoChamberRespawnPoints.Count == 0) {
-            // TODO GAME OVER
-            Debug.Log("GAME OVER");
-            IsPlaying = false;
+            HandleGameOver();
             return;
         }
 
@@ -85,6 +92,13 @@ public class GameController : MonoBehaviour {
             throw new Exception("No cryochamber found");
 
         SpawnPlayerAt(respawnPoint);
+    }
+
+    private void HandleGameOver() {
+        Debug.Log("GAME OVER");
+        IsPlaying = false;
+        HasWon = false;
+        SceneManager.LoadScene(EndSceneNumber, LoadSceneMode.Single);
     }
 
     public void SpawnPlayerInitial() {
@@ -102,5 +116,13 @@ public class GameController : MonoBehaviour {
         }
         RoomManager.Instance.ChangeToRoom(roomName, pos, Instantiate(playerPrefab));
     }
-    
+
+    public void ReStartGame() {
+        HasWon = false;
+        IsPlaying = true;
+        _deathTimer = deathTime;
+
+        FindRespawnPoints();
+        SpawnPlayerInitial();
+    }
 }

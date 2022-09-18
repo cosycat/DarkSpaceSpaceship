@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5eac789a1fb449aa8f0fab470041d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneNumber: 0
+  endSceneNumber: 1
   playerPrefab: {fileID: 8180721911482464160, guid: 336adfee6d0824c079946aa1b9539cc5, type: 3}
   startingPoint:
     roomName: StasisRoom
